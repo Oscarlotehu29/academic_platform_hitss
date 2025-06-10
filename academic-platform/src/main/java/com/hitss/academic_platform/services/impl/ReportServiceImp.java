@@ -58,7 +58,7 @@ public class ReportServiceImp implements ReportsService{
 		
 		Optional<Subject> subject = subjectRepository.findById(id);
 		
-		if(subject.isPresent()) throw new IllegalArgumentException("Error: The Subject with the Id that you specified doesn't exist.");
+		if(!subject.isPresent()) throw new IllegalArgumentException("Error: The Subject with the Id that you specified doesn't exist.");
 		
 		reportSubjectDto.setSubject(subject.get());
 		List<Grade> grades = gradeRepository.findBySubjectId(id);
@@ -66,7 +66,7 @@ public class ReportServiceImp implements ReportsService{
 		BigDecimal average = grades.stream().map(Grade::getGrade).reduce(BigDecimal.ZERO, BigDecimal::add);
 		
 		average = average.divide(BigDecimal.valueOf(grades.size()), 2, RoundingMode.HALF_UP);
-		
+		reportSubjectDto.setAverageSubject(average);
 		return reportSubjectDto;
 	}
 	

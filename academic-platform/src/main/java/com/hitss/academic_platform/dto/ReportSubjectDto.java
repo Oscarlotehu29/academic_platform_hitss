@@ -1,5 +1,7 @@
 package com.hitss.academic_platform.dto;
 
+import java.math.BigDecimal;
+
 import com.hitss.academic_platform.entities.Subject;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReportSubjectDto {
 	
-	private float averageSubject;
+	private BigDecimal averageSubject;
 	
 	private Subject subject;
 }
